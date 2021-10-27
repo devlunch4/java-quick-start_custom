@@ -17,4 +17,6 @@ public class Connection {
             databases.forEach(db -> System.out.println(db.toJson()));
         }
     }
+    // todo Test
+    // https://vscode.dev/github/devlunch4/java-quick-start_custom
 }
