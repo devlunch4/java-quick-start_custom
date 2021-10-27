@@ -11,6 +11,7 @@ public class Connection {
 
     public static void main(String[] args) {
         String connectionString = System.getProperty("mongodb.uri");
+                //mongodb+srv://java:<password>@cluster0.qcj0s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             List<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
             databases.forEach(db -> System.out.println(db.toJson()));

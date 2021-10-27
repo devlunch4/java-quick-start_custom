@@ -19,8 +19,9 @@ public class Create {
     private static final Random rand = new Random();
 
     public static void main(String[] args) {
-        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
-
+        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))
+             //mongodb+srv://java:<password>@cluster0.qcj0s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+        ) {
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
             MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("grades");
 
@@ -46,11 +47,11 @@ public class Create {
 
     private static Document generateNewGrade(double studentId, double classId) {
         List<Document> scores = asList(new Document("type", "exam").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "quiz").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "homework").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "homework").append("score", rand.nextDouble() * 100));
+                new Document("type", "quiz").append("score", rand.nextDouble() * 100),
+                new Document("type", "homework").append("score", rand.nextDouble() * 100),
+                new Document("type", "homework").append("score", rand.nextDouble() * 100));
         return new Document("_id", new ObjectId()).append("student_id", studentId)
-                                                  .append("class_id", classId)
-                                                  .append("scores", scores);
+                .append("class_id", classId)
+                .append("scores", scores);
     }
 }

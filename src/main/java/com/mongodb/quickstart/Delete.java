@@ -15,7 +15,9 @@ import static com.mongodb.client.model.Filters.gte;
 public class Delete {
 
     public static void main(String[] args) {
-        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
+        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))
+             //mongodb+srv://java:<password>@cluster0.qcj0s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+        ) {
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
             MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("grades");
 
